@@ -7,9 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build and push the image
-        java-version: '17'
-        distribution: 'ubuntu:rolling'
-
         run: |
          mvn --batch-mode --update-snapshots package
          docker login --username Anshika1603 --password ${{ secrets.MY_KEY }} ghcr.io
