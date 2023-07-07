@@ -6,9 +6,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          java-version: '17'
+          distribution: 'ubuntu:rolling'
+      - name: Build JAR
+        run: |
+         mvn clean package -DskipTests
       - name: Build and push the image
         run: |
-         mvn --batch-mode --update-snapshots package
          docker login --username Anshika1603 --password ${{ secrets.MY_KEY }} ghcr.io
          docker build . --tag ghcr.io/anshika1603/hello-world-ghcr:latest
          docker push ghcr.io/anshika1603/hello-world-ghcr:latest
