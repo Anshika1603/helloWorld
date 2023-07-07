@@ -20,6 +20,10 @@ jobs:
          docker login --username Anshika1603 --password ${{ secrets.MY_KEY }} ghcr.io
          docker build . --tag ghcr.io/anshika1603/hello-world-ghcr:latest
          docker push ghcr.io/anshika1603/hello-world-ghcr:latest
+      - name: Push to azure cluster
+        run: |
+         kubectl apply -f azure-vote.yaml
+         
     
           
          
